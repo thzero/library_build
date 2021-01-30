@@ -3,6 +3,8 @@ name: Build CI
 on:
     workflow_dispatch:
       inputs:
+        type:
+          description: 'Build type'
         logLevel:
           description: 'Log level'
           required: true
@@ -24,4 +26,4 @@ jobs:
     steps:
       - name: TEST
         run: |
-          echo ${{ github.event.action }}
+          echo ${{ github.inputs.type }}
