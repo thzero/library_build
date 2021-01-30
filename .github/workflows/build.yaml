@@ -1,0 +1,27 @@
+name: Build CI
+
+on:
+    workflow_dispatch:
+      inputs:
+        logLevel:
+          description: 'Log level'
+          required: true
+          default: 'warning'
+        tags:
+          description: 'Build'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    if: github.actor == github.event.repository.owner.login
+
+    strategy:
+      matrix:
+        #node-version: [8.x, 10.x, 12.x]
+        node-version: [13.x]
+
+    steps:
+      - name: TEST
+        run: |
+          echo ${{ github.event.action }}
