@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: TEST
         run: |
-          echo ${{ github.inputs.type }}
+          echo ${{ github.event.inputs.type }}
