@@ -5,6 +5,7 @@ on:
       inputs:
         type:
           description: 'Build type'
+          default: 'npm'
         logLevel:
           description: 'Log level'
           required: true
@@ -27,9 +28,14 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
-      - name: Test Repo
-        run: |
-          curl -X POST https://api.github.com/repos/thzero/test/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "${{ github.event.inputs.type }}" }'
+      #- name: Test Repo
+     #   run: |
+      #    curl -X POST https://api.github.com/repos/thzero/test/dispatches \
+     #     -H 'Accept: application/vnd.github.v3+json' \
+     #     -u ${{ secrets.ACCESS_TOKEN }} \
+     #     -d '{"event_type": "${{ github.event.inputs.type }}" }'
+     - name: Repository Dispatch - Test
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          event-type: ${{ github.event.inputs.type }}
