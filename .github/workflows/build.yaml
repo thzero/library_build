@@ -6,6 +6,8 @@ on:
         type:
           description: 'Build type'
           default: 'npm'
+        label:
+          description: 'Git Label'
         logLevel:
           description: 'Log level'
           required: true
@@ -34,4 +36,4 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository: thzero/test
           event-type: ${{ github.event.inputs.type }}
-          client-payload: '{}'
+          client-payload: '{ label: "${{ github.event.inputs.label }}" }'
