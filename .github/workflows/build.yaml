@@ -28,12 +28,6 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
-      #- name: Test Repo
-     #   run: |
-      #    curl -X POST https://api.github.com/repos/thzero/test/dispatches \
-     #     -H 'Accept: application/vnd.github.v3+json' \
-     #     -u ${{ secrets.ACCESS_TOKEN }} \
-     #     -d '{"event_type": "${{ github.event.inputs.type }}" }'
      - name: Repository Dispatch - Test
         uses: peter-evans/repository-dispatch@v1
         with:
