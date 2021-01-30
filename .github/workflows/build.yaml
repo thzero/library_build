@@ -27,3 +27,8 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
+      - name: Test Repo
+        run: |
+          echo curl -X POST https://api.github.com/repos/thzero/test/actions-remote-dispatch-b/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          --data '{"event_type": "${{ github.event.inputs.type }}" }'
