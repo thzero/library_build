@@ -32,4 +32,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
+          repository: thzero/test
           event-type: ${{ github.event.inputs.type }}
+          client-payload: '{}'
