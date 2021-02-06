@@ -8,6 +8,8 @@ on:
           default: 'npm'
         label:
           description: 'Git Label'
+        library:
+          description: 'Specific Library'
         logLevel:
           description: 'Log level'
           required: true
@@ -30,17 +32,26 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
-      - name: Repository Dispatch - CLI
+      - name: Repository Dispatch - test
         uses: peter-evans/repository-dispatch@v1
-        with:
+        with:cli
           token: ${{ secrets.ACCESS_TOKEN }}
-          repository: thzero/library_cli
+          repository: thzero/test
           event-type: ${{ github.event.inputs.type }}
           client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
-      - name: Repository Dispatch - Common
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          repository: thzero/library_common
-          event-type: ${{ github.event.inputs.type }}
-          client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
+      # - name: Repository Dispatch - CLI
+      #   if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'cli'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:cli
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_cli
+      #     event-type: ${{ github.event.inputs.type }}
+      #     client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
+      # - name: Repository Dispatch - Common
+      #   if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'common'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_common
+      #     event-type: ${{ github.event.inputs.type }}
+      #     client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
