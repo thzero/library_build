@@ -42,7 +42,7 @@ jobs:
       - name: Repository Dispatch - CLI
         if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'cli'
         uses: peter-evans/repository-dispatch@v1
-        with:cli
+        with:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository: thzero/library_cli
           event-type: ${{ github.event.inputs.type }}
