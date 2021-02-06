@@ -39,14 +39,14 @@ jobs:
           repository: thzero/test
           event-type: ${{ github.event.inputs.type }}
           client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
-      # - name: Repository Dispatch - CLI
-      #   if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'cli'
-      #   uses: peter-evans/repository-dispatch@v1
-      #   with:cli
-      #     token: ${{ secrets.ACCESS_TOKEN }}
-      #     repository: thzero/library_cli
-      #     event-type: ${{ github.event.inputs.type }}
-      #     client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
+      - name: Repository Dispatch - CLI
+        if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'cli'
+        uses: peter-evans/repository-dispatch@v1
+        with:cli
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository: thzero/library_cli
+          event-type: ${{ github.event.inputs.type }}
+          client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
       # - name: Repository Dispatch - Common
       #   if: github.event.inputs.library == null || github.event.inputs.library == '' || github.event.inputs.library == 'common'
       #   uses: peter-evans/repository-dispatch@v1
