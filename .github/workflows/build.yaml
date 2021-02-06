@@ -30,10 +30,10 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
-      - name: Repository Dispatch - Test
+      - name: Repository Dispatch - CLI
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-          repository: thzero/test
+          repository: thzero/library_cli
           event-type: ${{ github.event.inputs.type }}
           client-payload: '{ "label": "${{ github.event.inputs.label }}" }'
