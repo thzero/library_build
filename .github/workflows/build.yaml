@@ -34,7 +34,7 @@ jobs:
           echo ${{ github.event.inputs.type }}
       - name: Repository Dispatch - test
         uses: peter-evans/repository-dispatch@v1
-        with:cli
+        with:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository: thzero/test
           event-type: ${{ github.event.inputs.type }}
