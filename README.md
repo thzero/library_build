@@ -6,4 +6,4 @@ A library based on Github Actions to build the opinionated @thzero/library packa
 
 ## Build Workflow
 
-![build workflow](./LibraryBuild.png)
+![build workflow](./LibraryBuild.png?raw=true)
