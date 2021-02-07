@@ -1,4 +1,4 @@
-name: Build CI
+name: Build Base CI
 
 on:
     repository_dispatch:
