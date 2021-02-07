@@ -1,0 +1,66 @@
+name: Build Library
+
+on:
+    workflow_dispatch:
+      inputs:
+        action:
+          description: 'Build action'
+          default: 'npm'
+        label:
+          description: 'Git Label'
+        library:
+          description: 'Specific Library'
+        logLevel:
+          description: 'Log level'
+          required: true
+          default: 'warning'
+        tags:
+          description: 'Build'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    if: github.actor == github.event.repository.owner.login
+
+    strategy:
+      matrix:
+        #node-version: [8.x, 10.x, 12.x]
+        node-version: [13.x]
+
+    steps:
+      - name: Build Type
+        run: |
+          echo ${{ github.event.inputs.type }}
+      # - name: Repository Dispatch - CLI
+      #   if: github.event.inputs.library == 'cli'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_cli
+      #     event-type: 'build_library'
+      #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
+      # - name: Repository Dispatch - Common
+      #   if: .event.inputs.library == 'common'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_common
+      #     event-type: 'build_library'
+      #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
+      # - name: Repository Dispatch - Common Service
+      #   if: .event.inputs.library == 'common_service'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_common_service
+      #     event-type: 'build_library'
+      #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
+      # - name: Repository Dispatch - Client
+      #   if: .event.inputs.library == 'client'
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     token: ${{ secrets.ACCESS_TOKEN }}
+      #     repository: thzero/library_client
+      #     event-type: 'build_library'
+      #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
