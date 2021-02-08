@@ -18,20 +18,24 @@ jobs:
     steps:
     - name: Event Input
       run: |
-        echo type: ${{ github.event.action }}
-        echo action: ${{ github.event.client_payload.label.action }}
-        echo label: ${{ github.event.client_payload.label.label }}
+        echo event: ${{ JSON.stringfy(github.event) }}
+        echo event-type: ${{ github.event.action }}
+        echo action: ${{ github.event.client_payload.action }}
+        echo label: ${{ github.event.client_payload.label }}
+        echo library: ${{ github.event.client_payload.library }}
     # - name: Repository Dispatch - Client
-    #     uses: peter-evans/repository-dispatch@v1
-    #     with:
-    #       token: ${{ secrets.ACCESS_TOKEN }}
-    #       repository: thzero/library_client
-    #       event-type: ${{ github.event.inputs.type }}
-    #       client-payload: '{ "label": "${{ github.event.client_payload.label }}", "library": "${{ github.event.inputs.library }}" }'
+    #   if: github.event.action == 'build_all'
+    #   uses: peter-evans/repository-dispatch@v1
+    #   with:
+    #     token: ${{ secrets.ACCESS_TOKEN }}
+    #     repository: thzero/library_client
+    #     event-type: ${{ github.event.action }}
+    #     client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     # - name: Repository Dispatch - Common Service
-    #     uses: peter-evans/repository-dispatch@v1
-    #     with:
-    #       token: ${{ secrets.ACCESS_TOKEN }}
-    #       repository: thzero/library_common_service
-    #       event-type: ${{ github.event.inputs.type }}
-    #       client-payload: '{ "label": "${{ github.event.client_payload.label }}", "library": "${{ github.event.inputs.library }}" }'
+    #   if: github.event.action == 'build_all'
+    #   uses: peter-evans/repository-dispatch@v1
+    #   with:
+    #     token: ${{ secrets.ACCESS_TOKEN }}
+    #     repository: thzero/library_common_service
+    #     event-type: ${{ github.event.action }}
+    #     client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
