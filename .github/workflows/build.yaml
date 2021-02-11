@@ -32,18 +32,18 @@ jobs:
       - name: Build Type
         run: |
           echo ${{ github.event.inputs.type }}
-      - name: Repository Dispatch - test
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          repository: thzero/test
-          event-type: 'build_all'
-          client-payload: '{ "action": "${{ github.event.inputs.action }}", "label": "${{ github.event.inputs.label }}" }'
-      # - name: Repository Dispatch - CLI
-      #   if: github.event.inputs.library == null || github.event.inputs.library == ''
+      # - name: Repository Dispatch - test
       #   uses: peter-evans/repository-dispatch@v1
       #   with:
       #     token: ${{ secrets.ACCESS_TOKEN }}
-      #     repository: thzero/library_cli
+      #     repository: thzero/test
       #     event-type: 'build_all'
       #     client-payload: '{ "action": "${{ github.event.inputs.action }}", "label": "${{ github.event.inputs.label }}" }'
+      - name: Repository Dispatch - CLI
+        if: github.event.inputs.library == null || github.event.inputs.library == ''
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository: thzero/library_cli
+          event-type: 'build_all'
+          client-payload: '{ "action": "${{ github.event.inputs.action }}", "label": "${{ github.event.inputs.label }}" }'
