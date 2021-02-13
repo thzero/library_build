@@ -22,19 +22,19 @@ jobs:
         echo action: ${{ github.event.client_payload.action }}
         echo label: ${{ github.event.client_payload.label }}
         echo library: ${{ github.event.client_payload.library }}
-    # - name: Repository Dispatch - Client
-    #   if: github.event.action == 'build_all'
-    #   uses: peter-evans/repository-dispatch@v1
-    #   with:
-    #     token: ${{ secrets.ACCESS_TOKEN }}
-    #     repository: thzero/library_client
-    #     event-type: ${{ github.event.action }}
-    #     client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
-    # - name: Repository Dispatch - Common Service
-    #   if: github.event.action == 'build_all'
-    #   uses: peter-evans/repository-dispatch@v1
-    #   with:
-    #     token: ${{ secrets.ACCESS_TOKEN }}
-    #     repository: thzero/library_common_service
-    #     event-type: ${{ github.event.action }}
-    #     client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Client
+      if: github.event.action == 'build_all'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_client
+        event-type: ${{ github.event.action }}
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Common Service
+      if: github.event.action == 'build_all'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_common_service
+        event-type: ${{ github.event.action }}
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
