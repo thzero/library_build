@@ -47,7 +47,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
-        repository: thzero/library_server_service_messaging_slack
+        repository: thzero/library_server_messaging_slack
         event-type: 'build_all'
         client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Server Syslog
