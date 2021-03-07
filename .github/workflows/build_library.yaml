@@ -1,4 +1,4 @@
-name: Build Library
+name: Build Library CI
 
 on:
     workflow_dispatch:
