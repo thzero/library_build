@@ -56,14 +56,14 @@ jobs:
       #     repository: thzero/library_common_service
       #     event-type: 'build_library'
       #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
-      - name: Repository Dispatch - Client
+      - name: Repository Dispatch - Library Client
         if: github.event.inputs.library == 'library_client'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository: thzero/library_client
           event-type: 'build_library'
-          client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
+          client-payload: '{ "action": "${{ github.event.inputs.action }}", "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
       - name: Repository Dispatch - Server Registry Lightweight
         if: github.event.inputs.library == 'server_registry_lightweight'
         uses: peter-evans/repository-dispatch@v1
@@ -71,4 +71,4 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           repository: thzero/server_registry_lightweight
           event-type: 'build_library'
-          client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
+          client-payload: '{ "action": "${{ github.event.inputs.action }}", "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
