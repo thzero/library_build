@@ -1,4 +1,4 @@
-name: Build Library CI
+name: Build Specific Library CI
 
 on:
     workflow_dispatch:
@@ -41,7 +41,7 @@ jobs:
       #     event-type: 'build_library'
       #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
       # - name: Repository Dispatch - Common
-      #   if: .event.inputs.library == 'common'
+      #   if: github.event.inputs.library == 'common'
       #   uses: peter-evans/repository-dispatch@v1
       #   with:
       #     token: ${{ secrets.ACCESS_TOKEN }}
@@ -49,7 +49,7 @@ jobs:
       #     event-type: 'build_library'
       #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
       # - name: Repository Dispatch - Common Service
-      #   if: .event.inputs.library == 'common_service'
+      #   if: github.event.inputs.library == 'common_service'
       #   uses: peter-evans/repository-dispatch@v1
       #   with:
       #     token: ${{ secrets.ACCESS_TOKEN }}
@@ -57,7 +57,7 @@ jobs:
       #     event-type: 'build_library'
       #     client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
       - name: Repository Dispatch - Client
-        if: .event.inputs.library == 'library_client'
+        if: github.event.inputs.library == 'library_client'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
           event-type: 'build_library'
           client-payload: '{ "action": "${{ github.event.inputs.action }}", { "label": "${{ github.event.inputs.label }}", "library": "${{ github.event.inputs.library }}" }'
       - name: Repository Dispatch - Server Registry Lightweight
-        if: .event.inputs.library == 'server_registry_lightweight'
+        if: github.event.inputs.library == 'server_registry_lightweight'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
