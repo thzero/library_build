@@ -36,6 +36,13 @@ jobs:
         repository: thzero/library_client_service_rest_axios
         event-type: 'build_all'
         client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Client Service REST Fetch
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_client_service_rest_fetch
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Client Vue
       uses: peter-evans/repository-dispatch@v1
       with:
