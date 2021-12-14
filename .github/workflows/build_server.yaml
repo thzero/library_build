@@ -22,18 +22,18 @@ jobs:
         echo action: ${{ github.event.client_payload.action }}
         echo label: ${{ github.event.client_payload.label }}
         echo library: ${{ github.event.client_payload.library }}
-    - name: Repository Dispatch - Server Service Validation Joi
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.ACCESS_TOKEN }}
-        repository: thzero/library_server_validation_joi
-        event-type: 'build_all'
-        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Repository Mongo
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
         repository: thzero/library_server_repository_mongo
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Service Validation Joi
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_server_validation_joi
         event-type: 'build_all'
         client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Server Firebase
@@ -43,11 +43,60 @@ jobs:
         repository: thzero/library_server_firebase
         event-type: 'build_all'
         client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Service Grpc
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_server_service_grpc
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Logger Pino
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_server_logger_pino
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Logger Winston
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_server_logger_winston
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Server Service Messaging Slack
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
         repository: thzero/library_server_messaging_slack
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Service Discovery Resources Lightweight Proto
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }} 
+        repository: thzero/library_server_service_discovery_resources_lightweight_proto
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Service Discovery Resources Lightweight
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }} 
+        repository: thzero/library_server_service_discovery_resources_lightweight
+        event-type: 'build_all'
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Service Discovery MDNS
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }} 
+        repository: thzero/library_server_service_discovery_mdns
+        event-type: 'build_all' 
+        client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
+    - name: Repository Dispatch - Server Servicve REST Axios
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: thzero/library_server_service_rest_axios
         event-type: 'build_all'
         client-payload: '{ "action": "${{ github.event.client_payload.action }}", "label": "${{ github.event.client_payload.label }}" }'
     - name: Repository Dispatch - Server Syslog
